@@ -14,9 +14,14 @@ using namespace address_wtf;
 
 void foo()
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-    });
+    CGRect rcZero = { 0, 0, 0, 0 };
+    
+    objcrtxx::ivar_ref_t<id> r1(nil, NULL);
+    r1 = nil;
+
+    objcrtxx::ivar_ref_t<CGRect> r2(nil, NULL);
+    r2 = rcZero;
+    r2->size.width = 0;
 }
 
 int main(int argc, const char * argv[]) {

@@ -45,6 +45,7 @@
 		570D6EA41C4002C3002F19E3 /* objcrtxx_sel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_sel.h; sourceTree = "<group>"; };
 		570D6EA61C4004AC002F19E3 /* objcrtxx_list_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_list_impl.h; sourceTree = "<group>"; };
 		570D6EA71C4005AA002F19E3 /* objcrtxx_defs_cleanup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_defs_cleanup.h; sourceTree = "<group>"; };
+		578D4BF01C4444BB00356D39 /* objcrtxx_msgsend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_msgsend.h; sourceTree = "<group>"; };
 		579693951C3FC4A70082A5F9 /* ObjCxxRuntime */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjCxxRuntime; sourceTree = BUILT_PRODUCTS_DIR; };
 		579693981C3FC4A70082A5F9 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +79,7 @@
 				570D6E911C4002C3002F19E3 /* objcrtxx_list.h */,
 				570D6E9A1C4002C3002F19E3 /* objcrtxx_method_impl.h */,
 				570D6EA11C4002C3002F19E3 /* objcrtxx_method.h */,
+				578D4BF01C4444BB00356D39 /* objcrtxx_msgsend.h */,
 				570D6E9B1C4002C3002F19E3 /* objcrtxx_property_impl.h */,
 				570D6E9E1C4002C3002F19E3 /* objcrtxx_property.h */,
 				570D6E9C1C4002C3002F19E3 /* objcrtxx_protocol_impl.h */,

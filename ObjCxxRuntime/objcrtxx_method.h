@@ -16,29 +16,22 @@ struct method_t
     OBJCXX_PRIMITIVE_WRAPPER(method_t, Method, method, NULL)
     
     template<typename TRet, typename ...TArgs>
-    TRet invoke(id self_, TArgs... args)
-    {
-        return (reinterpret_cast<TRet(*)(id, Method, TArgs...)>(method_invoke))(self_, method, args...);
-    }
+    inline TRet invoke(id self_, TArgs... args);
 
     template<typename TRet, typename ...TArgs>
-    TRet invoke_stret(id self_, TArgs... args)
-    {
-        return (reinterpret_cast<TRet(*)(id, Method, TArgs...)>(method_invoke_stret))(self_, method, args...);
-    }
+    inline TRet invoke_stret(id self_, TArgs... args);
 
-    const sel_t                 getName()                                   { return method_getName(method); }
-    imp_t                       getImplementation()                         { return method_getImplementation(method); }
-    const char *                getTypeEncoding()                           { return method_getTypeEncoding(method); }
-    char *                      copyReturnType()                            { return method_copyReturnType(method); }
-    char *                      copyArgumentType(unsigned int index)        { return method_copyArgumentType(method, index); }
-    void                        getReturnType(char *dst, size_t dst_len)    { return method_getReturnType(method, dst, dst_len); }
-    unsigned int                getNumberOfArguments()                      { return method_getNumberOfArguments(method); }
-    void                        getArgumentType(unsigned int index, char *dst, size_t dst_len)
-    { return method_getArgumentType(method, index, dst, dst_len); }
-    __objc_method_description_t getDescription()                            { return method_getDescription(method); }
-    imp_t                       setImplementation(imp_t imp)                { return method_setImplementation(method, imp); }
-    void                        exchangeImplementations(method_t other)     { return method_exchangeImplementations(method, other); }
+    inline const sel_t getName();
+    inline imp_t getImplementation();
+    inline const char *getTypeEncoding();
+    inline char *copyReturnType();
+    inline char *copyArgumentType(unsigned int index);
+    inline void getReturnType(char *dst, size_t dst_len);
+    inline unsigned int getNumberOfArguments();
+    inline void getArgumentType(unsigned int index, char *dst, size_t dst_len);
+    inline detail::objc_method_description_t getDescription();
+    inline imp_t setImplementation(imp_t imp);
+    inline void exchangeImplementations(method_t other);
 };
 
 OBJCRTXX_END_NAMESPACE

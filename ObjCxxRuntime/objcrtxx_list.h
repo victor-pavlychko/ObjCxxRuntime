@@ -86,13 +86,13 @@ struct global_runtime_list_t: public runtime_list_base_t<TItem>
     }
 };
 
-typedef global_runtime_list_t<__Class_t,                objc_copyClassList>     global_class_list_t;
-typedef global_runtime_list_t<__Protocol_t,             objc_copyProtocolList>  global_protocol_list_t;
+typedef global_runtime_list_t<detail::Class_t,      objc_copyClassList>     global_class_list_t;
+typedef global_runtime_list_t<detail::Protocol_t,   objc_copyProtocolList>  global_protocol_list_t;
 
-typedef object_runtime_list_t<Ivar,             Class,  class_copyIvarList>     ivar_list_t;
-typedef object_runtime_list_t<objc_property_t,  Class,  class_copyPropertyList> property_list_t;
-typedef object_runtime_list_t<Method,           Class,  class_copyMethodList>   method_list_t;
-typedef object_runtime_list_t<__Protocol_t,     Class,  class_copyProtocolList> protocol_list_t;
+typedef object_runtime_list_t<Ivar,                 Class,  class_copyIvarList>     ivar_list_t;
+typedef object_runtime_list_t<objc_property_t,      Class,  class_copyPropertyList> property_list_t;
+typedef object_runtime_list_t<Method,               Class,  class_copyMethodList>   method_list_t;
+typedef object_runtime_list_t<detail::Protocol_t,   Class,  class_copyProtocolList> protocol_list_t;
 
 struct property_attribute_list_t: public object_runtime_list_t<objc_property_attribute_t, objc_property_t, property_copyAttributeList>
 {

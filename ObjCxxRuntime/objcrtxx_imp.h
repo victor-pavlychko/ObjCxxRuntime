@@ -14,6 +14,10 @@ OBJCRTXX_BEGIN_NAMESPACE
 struct imp_t
 {
     OBJCXX_PRIMITIVE_WRAPPER(imp_t, IMP, imp, NULL)
+    
+    inline static imp_t implementationWithBlock(id block);
+    inline id getBlock();
+    inline bool removeBlock();
 };
 
 OBJCRTXX_END_NAMESPACE

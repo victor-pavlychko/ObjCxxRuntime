@@ -11,4 +11,39 @@
 
 OBJCRTXX_BEGIN_NAMESPACE
 
+const char *ivar_t::getName()
+{
+    return ivar_getName(ivar);
+}
+
+const char *ivar_t::getTypeEncoding()
+{
+    return ivar_getTypeEncoding(ivar);
+}
+
+ptrdiff_t ivar_t::getOffset()
+{
+    return ivar_getOffset(ivar);
+}
+
+template<typename T>
+template<typename U>
+typename detail::ivar_ref_traits<U>::pointer_type ivar_ref_t<T>::ptr()
+{
+    static_assert(std::is_same<T, U>::value, "invalid explicit specialisation");
+    return reinterpret_cast<T *>(reinterpret_cast<char *>((__bridge void *)instance) + ivar.getOffset());
+}
+
+template<>
+id ivar_ref_t<id>::get()
+{
+    return object_getIvar(instance, ivar);
+}
+
+template<>
+void ivar_ref_t<id>::set(id value)
+{
+    object_setIvar(instance, ivar, value);
+}
+
 OBJCRTXX_END_NAMESPACE

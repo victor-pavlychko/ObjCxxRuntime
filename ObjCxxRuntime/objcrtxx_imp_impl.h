@@ -11,4 +11,19 @@
 
 OBJCRTXX_BEGIN_NAMESPACE
 
+imp_t imp_t::implementationWithBlock(id block)
+{
+    return imp_implementationWithBlock(block);
+}
+
+id imp_t::getBlock()
+{
+    return imp_getBlock(imp);
+}
+
+bool imp_t::removeBlock()
+{
+    return imp_removeBlock(imp);
+}
+
 OBJCRTXX_END_NAMESPACE

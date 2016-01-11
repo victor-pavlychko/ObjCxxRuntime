@@ -14,6 +14,11 @@ OBJCRTXX_BEGIN_NAMESPACE
 struct property_t
 {
     OBJCXX_PRIMITIVE_WRAPPER(property_t, objc_property_t, property, NULL)
+
+    inline const char *getName();
+    inline const char *getAttributes();
+    inline char *copyAttributeValue(const char *attributeName);
+    inline objc_property_attribute_t *copyAttributeList(unsigned int *outCount);
 };
 
 OBJCRTXX_END_NAMESPACE
