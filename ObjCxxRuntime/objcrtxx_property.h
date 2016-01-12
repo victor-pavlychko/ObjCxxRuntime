@@ -26,14 +26,16 @@ struct property_t
 
 struct property_info_t
 {
+    property_attribute_list_t attributes;
+
     const char *name = nullptr;
     
-    BOOL isReadOnly = NO;
-    BOOL isCopy = NO;
-    BOOL isRetain = NO;
-    BOOL isNonAtomic = NO;
-    BOOL isDynamic = NO;
-    BOOL isWeak = NO;
+    bool isReadOnly = false;
+    bool isCopy = false;
+    bool isRetain = false;
+    bool isNonAtomic = false;
+    bool isDynamic = false;
+    bool isWeak = false;
     
     SEL getterSelector = NULL;
     SEL setterSelector = NULL;

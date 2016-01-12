@@ -23,42 +23,16 @@ struct runtime_list_t
     runtime_list_t() = delete;
     runtime_list_t(const runtime_list_t<value_type> &) = delete;
     runtime_list_t &operator=(const runtime_list_t<value_type> &) = delete;
-
-    template<typename TFactory, typename TOwner, typename ...TArgs>
-    inline runtime_list_t(TFactory factory, TOwner owner, TArgs... args)
-    {
-        unsigned int count_ = 0;
-        items = factory(owner, args..., &count_);
-        count = static_cast<size_t>(count_);
-    }
-
-    inline runtime_list_t(runtime_list_t<value_type> &&other)
-    {
-        count = other.count;
-        items = other.items;
-        other.count = 0;
-        other.items = nullptr;
-    }
     
-    inline ~runtime_list_t()
-    {
-        free(items);
-    }
+    template<typename TFactory, typename TOwner, typename ...TArgs>
+    inline runtime_list_t(TFactory factory, TOwner owner, TArgs... args);
 
-    inline size_t size() const
-    {
-        return count;
-    }
+    inline runtime_list_t(runtime_list_t<value_type> &&other);
+    inline ~runtime_list_t();
 
-    inline const_iterator begin() const
-    {
-        return items;
-    }
-
-    inline const_iterator end() const
-    {
-        return items + count;
-    }
+    inline size_t size() const;
+    inline const_iterator begin() const;
+    inline const_iterator end() const;
 };
 
 typedef runtime_list_t<detail::Class_t>             class_list_t;

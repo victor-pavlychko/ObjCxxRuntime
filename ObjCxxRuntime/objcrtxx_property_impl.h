@@ -64,8 +64,8 @@ namespace
         }
         else if (info.isWeak)
         {
-            // retain holder as non-atomic
-            return OBJC_ASSOCIATION_RETAIN_NONATOMIC;
+            // weak not supported by associative references!
+            return OBJC_ASSOCIATION_ASSIGN;
         }
         else
         {
@@ -73,36 +73,37 @@ namespace
         }
     }
     
-    inline SEL getGetterSelector(const property_info_t &info)
+    inline sel_t getGetterSelector(const property_info_t &info)
     {
         if (info.customGetterName)
         {
-            return sel_getUid(info.customGetterName);
+            return sel_t::getUid(info.customGetterName);
         }
         
         const char *getterName = info.name;
-        return sel_getUid(getterName);
+        return sel_t::getUid(getterName);
     }
     
-    inline SEL getSetterSelector(const property_info_t &info)
+    inline sel_t getSetterSelector(const property_info_t &info)
     {
         if (info.customSetterName)
         {
-            return sel_getUid(info.customSetterName);
+            return sel_t::getUid(info.customSetterName);
         }
         
         size_t bufferSize = strlen(info.name) + 2;
         char setterName[bufferSize];
         sprintf(setterName, "set%c%s:", toupper(*info.name), info.name + 1);
-        return sel_getUid(setterName);
+        return sel_t::getUid(setterName);
     }
 }
 
 property_info_t::property_info_t(property_t property)
+    : attributes(property.copyAttributeList())
 {
-    name = property_getName(property);
-    
-    for (auto &attribute: property.copyAttributeList())
+    name = property.getName();
+
+    for (auto &attribute: attributes)
     {
         switch (*attribute.name)
         {
@@ -110,16 +111,16 @@ property_info_t::property_info_t(property_t property)
                 typeEncoding = attribute.value;
                 break;
             case 'R':
-                isReadOnly = YES;
+                isReadOnly = true;
                 break;
             case 'C':
-                isCopy = YES;
+                isCopy = true;
                 break;
             case '&':
-                isRetain = YES;
+                isRetain = true;
                 break;
             case 'N':
-                isNonAtomic = YES;
+                isNonAtomic = true;
                 break;
             case 'G':
                 customGetterName = attribute.value;
@@ -128,10 +129,10 @@ property_info_t::property_info_t(property_t property)
                 customSetterName = attribute.value;
                 break;
             case 'D':
-                isDynamic = YES;
+                isDynamic = true;
                 break;
             case 'W':
-                isWeak = YES;
+                isWeak = true;
                 break;
         }
     }
