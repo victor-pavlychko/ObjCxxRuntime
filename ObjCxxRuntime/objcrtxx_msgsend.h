@@ -15,7 +15,11 @@ OBJCRTXX_BEGIN_NAMESPACE
 
 namespace detail
 {
-    template<typename T> struct is_objc_stret:  public std::is_class<T> {};
+    template<typename T> struct is_objc_stret: public std::integral_constant<bool,
+        std::is_class<T>::value ||
+        std::is_union<T>::value
+    > {};
+
     template<typename T> struct is_objc_fpret:  public std::integral_constant<bool, false> {};
     template<typename T> struct is_objc_fp2ret: public std::integral_constant<bool, false> {};
  

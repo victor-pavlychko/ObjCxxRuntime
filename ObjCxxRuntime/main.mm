@@ -32,6 +32,8 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
         
+        foo();
+        
         std::cout << std::boolalpha;
         std::cout << std::is_pointer<id>::value << std::endl;
         std::cout << std::is_pointer<NSObject *>::value << std::endl;
