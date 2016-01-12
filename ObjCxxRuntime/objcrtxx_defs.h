@@ -25,6 +25,32 @@
     type__ *operator&() { return &var__; } \
     const type__ *operator&() const { return &var__; } \
 
+#if defined(__arm__)
+
+#   define OBJCRTXX_HAS_ABI        1
+#   define OBJCRTXX_HAS_ABI_FPRET  0
+#   define OBJCRTXX_HAS_ABI_FP2RET 0
+
+#elif defined(__i386__)
+
+#   define OBJCRTXX_HAS_ABI        1
+#   define OBJCRTXX_HAS_ABI_FPRET  1
+#   define OBJCRTXX_HAS_ABI_FP2RET 0
+
+#elif defined(__x86_64__)
+
+#   define OBJCRTXX_HAS_ABI        1
+#   define OBJCRTXX_HAS_ABI_FPRET  1
+#   define OBJCRTXX_HAS_ABI_FP2RET 1
+
+#else
+
+#   define OBJCRTXX_HAS_ABI        0
+#   define OBJCRTXX_HAS_ABI_FPRET  0
+#   define OBJCRTXX_HAS_ABI_FP2RET 0
+
+#endif
+
 OBJCRTXX_BEGIN_NAMESPACE
 
 namespace detail

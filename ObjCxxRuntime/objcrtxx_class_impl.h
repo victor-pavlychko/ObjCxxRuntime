@@ -46,7 +46,7 @@ void class_t::registerClassPair()
     return objc_registerClassPair(cls);
 }
 
-const char * class_t::getName()
+const char *class_t::getName()
 {
     return class_getName(cls);
 }
@@ -77,8 +77,11 @@ ivar_t class_t::getClassVariable(const char *name)
 }
 
 bool class_t::addIvar(const char *name, size_t size, uint8_t alignment, const char *types)
-{ return class_addIvar(cls, name, size, alignment, types); }
-const uint8_t * class_t::getIvarLayout()
+{
+    return class_addIvar(cls, name, size, alignment, types);
+}
+
+const uint8_t *class_t::getIvarLayout()
 {
     return class_getIvarLayout(cls);
 }
@@ -88,7 +91,7 @@ void class_t::setIvarLayout(const uint8_t *layout)
     return class_setIvarLayout(cls, layout);
 }
 
-const uint8_t * class_t::getWeakIvarLayout()
+const uint8_t *class_t::getWeakIvarLayout()
 {
     return class_getWeakIvarLayout(cls);
 }
@@ -188,17 +191,17 @@ protocol_list_t class_t::copyProtocolList()
     return protocol_list_t(cls);
 }
 
-Ivar * class_t::copyIvarList(unsigned int *outCount)
+Ivar *class_t::copyIvarList(unsigned int *outCount)
 {
     return class_copyIvarList(cls, outCount);
 }
 
-objc_property_t * class_t::copyPropertyList(unsigned int *outCount)
+objc_property_t *class_t::copyPropertyList(unsigned int *outCount)
 {
     return class_copyPropertyList(cls, outCount);
 }
 
-Method * class_t::copyMethodList(unsigned int *outCount)
+Method *class_t::copyMethodList(unsigned int *outCount)
 {
     return class_copyMethodList(cls, outCount);
 }

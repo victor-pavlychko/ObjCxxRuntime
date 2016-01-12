@@ -38,6 +38,7 @@
 
 #include "objcrtxx_defs.h"
 #include "objcrtxx_forwards.h"
+#include "objcrtxx_msgsend.h"
 
 #include "objcrtxx_list.h"
 
@@ -60,8 +61,6 @@
 #include "objcrtxx_property_impl.h"
 #include "objcrtxx_protocol_impl.h"
 #include "objcrtxx_sel_impl.h"
-
-#include "objcrtxx_msgsend.h"
 
 #include "objcrtxx_defs_cleanup.h"
 

@@ -10,6 +10,8 @@
 //#import "ObjCxxRuntime.h"
 #import "objcrtxx.h"
 
+#include <iostream>
+
 using namespace address_wtf;
 
 void foo()
@@ -22,11 +24,18 @@ void foo()
     objcrtxx::ivar_ref_t<CGRect> r2(nil, NULL);
     r2 = rcZero;
     r2->size.width = 0;
+    
+    objcrtxx::msgSend<float>(nil, @selector(init), 2, 3);
 }
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
+        
+        std::cout << std::boolalpha;
+        std::cout << std::is_pointer<id>::value << std::endl;
+        std::cout << std::is_pointer<NSObject *>::value << std::endl;
+        
         NSLog(@"Hello, World!");
     }
     

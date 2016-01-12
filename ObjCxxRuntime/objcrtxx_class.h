@@ -22,16 +22,16 @@ struct class_t
     inline static class_t allocateClassPair(Class superclass, const char *name, size_t extraBytes);
     inline void disposeClassPair();
     inline void registerClassPair();
-    inline const char * getName();
+    inline const char *getName();
     inline class_t getSuperclass();
     inline bool isMetaClass();
     inline size_t getInstanceSize();
     inline ivar_t getInstanceVariable(const char *name);
     inline ivar_t getClassVariable(const char *name);
     inline bool addIvar(const char *name, size_t size, uint8_t alignment, const char *types);
-    inline const uint8_t * getIvarLayout();
+    inline const uint8_t *getIvarLayout();
     inline void setIvarLayout(const uint8_t *layout);
-    inline const uint8_t * getWeakIvarLayout();
+    inline const uint8_t *getWeakIvarLayout();
     inline void setWeakIvarLayout(const uint8_t *layout);
     inline property_t getProperty(const char *name);
     inline bool addMethod(sel_t name, imp_t imp, const char *types);
@@ -51,9 +51,9 @@ struct class_t
     inline property_list_t copyPropertyList();
     inline method_list_t copyMethodList();
     inline protocol_list_t copyProtocolList();
-    inline Ivar * copyIvarList(unsigned int *outCount);
-    inline objc_property_t * copyPropertyList(unsigned int *outCount);
-    inline Method * copyMethodList(unsigned int *outCount);
+    inline Ivar *copyIvarList(unsigned int *outCount);
+    inline objc_property_t *copyPropertyList(unsigned int *outCount);
+    inline Method *copyMethodList(unsigned int *outCount);
     inline detail::Protocol_t *copyProtocolList(unsigned int *outCount);
     inline class_t setSuperclass(class_t newSuper);
     

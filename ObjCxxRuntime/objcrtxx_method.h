@@ -15,12 +15,16 @@ struct method_t
 {
     OBJCXX_PRIMITIVE_WRAPPER(method_t, Method, method, NULL)
     
-    template<typename TRet, typename ...TArgs>
-    inline TRet invoke(id self_, TArgs... args);
+#if OBJCRTXX_HAS_ABI
 
     template<typename TRet, typename ...TArgs>
-    inline TRet invoke_stret(id self_, TArgs... args);
+    typename std::enable_if<!detail::is_objc_stret<TRet>::value, TRet>::type invoke(id self_, TArgs... args);
+    
+    template<typename TRet, typename ...TArgs>
+    typename std::enable_if<detail::is_objc_stret<TRet>::value, TRet>::type invoke(id self_, TArgs... args);
 
+#endif // OBJCRTXX_HAS_ABI
+    
     inline const sel_t getName();
     inline imp_t getImplementation();
     inline const char *getTypeEncoding();
