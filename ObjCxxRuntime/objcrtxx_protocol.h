@@ -18,20 +18,20 @@ struct protocol_t
     inline protocol_t getProtocol(const char *name);
     inline protocol_t allocateProtocol(const char *name);
     inline void registerProtocol();
-    inline void addMethodDescription(SEL name, const char *types, BOOL isRequiredMethod, BOOL isInstanceMethod);
+    inline void addMethodDescription(sel_t name, const char *types, bool isRequiredMethod, bool isInstanceMethod);
     inline void addProtocol(protocol_t addition);
-    inline void addProperty(const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount, BOOL isRequiredProperty, BOOL isInstanceProperty);
+    inline void addProperty(const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount, bool isRequiredProperty, bool isInstanceProperty);
     inline const char *getName();
-    inline BOOL isEqual(protocol_t other);
-    inline struct objc_method_description getMethodDescription(SEL aSel, BOOL isRequiredMethod, BOOL isInstanceMethod);
-    inline objc_property_t getProperty(const char *name, BOOL isRequiredProperty, BOOL isInstanceProperty);
-    inline BOOL conformsToProtocol(protocol_t other);
+    inline bool isEqual(protocol_t other);
+    inline struct objc_method_description getMethodDescription(sel_t aSel, bool isRequiredMethod, bool isInstanceMethod);
+    inline objc_property_t getProperty(const char *name, bool isRequiredProperty, bool isInstanceProperty);
+    inline bool conformsToProtocol(protocol_t other);
     
-    inline method_description_list_t copyMethodDescriptionList(BOOL isRequiredMethod, BOOL isInstanceMethod);
+    inline method_description_list_t copyMethodDescriptionList(bool isRequiredMethod, bool isInstanceMethod);
     inline property_list_t copyPropertyList();
     inline protocol_list_t copyProtocolList();
     
-    inline struct objc_method_description *copyMethodDescriptionList(BOOL isRequiredMethod, BOOL isInstanceMethod, unsigned int *outCount);
+    inline struct objc_method_description *copyMethodDescriptionList(bool isRequiredMethod, bool isInstanceMethod, unsigned int *outCount);
     inline objc_property_t *copyPropertyList(unsigned int *outCount);
     inline detail::Protocol_t *copyProtocolList(unsigned int *outCount);
 };

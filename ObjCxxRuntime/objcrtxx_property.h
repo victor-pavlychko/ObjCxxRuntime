@@ -37,13 +37,12 @@ struct property_info_t
     bool isDynamic = false;
     bool isWeak = false;
     
-    SEL getterSelector = NULL;
-    SEL setterSelector = NULL;
-    
     const char *typeEncoding = nullptr;
     const char *customGetterName = nullptr;
     const char *customSetterName = nullptr;
     
+    SEL getterSelector = NULL;
+    SEL setterSelector = NULL;
     objc_AssociationPolicy associatonPolicy = OBJC_ASSOCIATION_RETAIN;
 
     explicit property_info_t(property_t property);
