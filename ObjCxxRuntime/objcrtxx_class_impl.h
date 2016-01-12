@@ -173,22 +173,22 @@ void class_t::setVersion(int version)
 
 ivar_list_t class_t::copyIvarList()
 {
-    return ivar_list_t(cls);
+    return ivar_list_t(class_copyIvarList, cls);
 }
 
 property_list_t class_t::copyPropertyList()
 {
-    return property_list_t(cls);
+    return property_list_t(class_copyPropertyList, cls);
 }
 
 method_list_t class_t::copyMethodList()
 {
-    return method_list_t(cls);
+    return method_list_t(class_copyMethodList, cls);
 }
 
 protocol_list_t class_t::copyProtocolList()
 {
-    return protocol_list_t(cls);
+    return protocol_list_t(class_copyProtocolList, cls);
 }
 
 Ivar *class_t::copyIvarList(unsigned int *outCount)

@@ -18,7 +18,33 @@ struct property_t
     inline const char *getName();
     inline const char *getAttributes();
     inline char *copyAttributeValue(const char *attributeName);
+
+    inline property_attribute_list_t copyAttributeList();
+
     inline objc_property_attribute_t *copyAttributeList(unsigned int *outCount);
+};
+
+struct property_info_t
+{
+    const char *name = nullptr;
+    
+    BOOL isReadOnly = NO;
+    BOOL isCopy = NO;
+    BOOL isRetain = NO;
+    BOOL isNonAtomic = NO;
+    BOOL isDynamic = NO;
+    BOOL isWeak = NO;
+    
+    SEL getterSelector = NULL;
+    SEL setterSelector = NULL;
+    
+    const char *typeEncoding = nullptr;
+    const char *customGetterName = nullptr;
+    const char *customSetterName = nullptr;
+    
+    objc_AssociationPolicy associatonPolicy = OBJC_ASSOCIATION_RETAIN;
+
+    explicit property_info_t(property_t property);
 };
 
 OBJCRTXX_END_NAMESPACE

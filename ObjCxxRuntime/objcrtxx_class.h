@@ -47,14 +47,17 @@ struct class_t
     inline bool conformsToProtocol(protocol_t protocol);
     inline int getVersion();
     inline void setVersion(int version);
+
     inline ivar_list_t copyIvarList();
     inline property_list_t copyPropertyList();
     inline method_list_t copyMethodList();
     inline protocol_list_t copyProtocolList();
+
     inline Ivar *copyIvarList(unsigned int *outCount);
     inline objc_property_t *copyPropertyList(unsigned int *outCount);
     inline Method *copyMethodList(unsigned int *outCount);
     inline detail::Protocol_t *copyProtocolList(unsigned int *outCount);
+
     inline class_t setSuperclass(class_t newSuper);
     
     //        objc_getFutureClass

@@ -51,19 +51,9 @@ BOOL protocol_t::isEqual(protocol_t other)
     return protocol_isEqual(protocol, other);
 }
 
-struct objc_method_description *protocol_t::copyMethodDescriptionList(BOOL isRequiredMethod, BOOL isInstanceMethod, unsigned int *outCount)
-{
-    return protocol_copyMethodDescriptionList(protocol, isRequiredMethod, isInstanceMethod, outCount);
-}
-
 struct objc_method_description protocol_t::getMethodDescription(SEL aSel, BOOL isRequiredMethod, BOOL isInstanceMethod)
 {
     return protocol_getMethodDescription(protocol, aSel, isRequiredMethod, isInstanceMethod);
-}
-
-objc_property_t *protocol_t::copyPropertyList(unsigned int *outCount)
-{
-    return protocol_copyPropertyList(protocol, outCount);
 }
 
 objc_property_t protocol_t::getProperty(const char *name, BOOL isRequiredProperty, BOOL isInstanceProperty)
@@ -71,14 +61,39 @@ objc_property_t protocol_t::getProperty(const char *name, BOOL isRequiredPropert
     return protocol_getProperty(protocol, name, isRequiredProperty, isInstanceProperty);
 }
 
-detail::Protocol_t *protocol_t::copyProtocolList(unsigned int *outCount)
-{
-    return protocol_copyProtocolList(protocol, outCount);
-}
-
 BOOL protocol_t::conformsToProtocol(protocol_t other)
 {
     return protocol_conformsToProtocol(protocol, other);
+}
+
+method_description_list_t protocol_t::copyMethodDescriptionList(BOOL isRequiredMethod, BOOL isInstanceMethod)
+{
+    return method_description_list_t(protocol_copyMethodDescriptionList, protocol, isRequiredMethod, isInstanceMethod);
+}
+
+property_list_t protocol_t::copyPropertyList()
+{
+    return property_list_t(protocol_copyPropertyList, protocol);
+}
+
+protocol_list_t protocol_t::copyProtocolList()
+{
+    return protocol_list_t(protocol_copyProtocolList, protocol);
+}
+
+struct objc_method_description *protocol_t::copyMethodDescriptionList(BOOL isRequiredMethod, BOOL isInstanceMethod, unsigned int *outCount)
+{
+    return protocol_copyMethodDescriptionList(protocol, isRequiredMethod, isInstanceMethod, outCount);
+}
+
+objc_property_t *protocol_t::copyPropertyList(unsigned int *outCount)
+{
+    return protocol_copyPropertyList(protocol, outCount);
+}
+
+detail::Protocol_t *protocol_t::copyProtocolList(unsigned int *outCount)
+{
+    return protocol_copyProtocolList(protocol, outCount);
 }
 
 OBJCRTXX_END_NAMESPACE
