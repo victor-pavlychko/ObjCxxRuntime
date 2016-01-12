@@ -53,10 +53,14 @@ struct class_t
     inline method_list_t copyMethodList();
     inline protocol_list_t copyProtocolList();
 
+#if OBJCRTXX_EXPOSE_LIST_ACCESSORS
+
     inline Ivar *copyIvarList(unsigned int *outCount);
     inline objc_property_t *copyPropertyList(unsigned int *outCount);
     inline Method *copyMethodList(unsigned int *outCount);
     inline detail::Protocol_t *copyProtocolList(unsigned int *outCount);
+
+#endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
     inline class_t setSuperclass(class_t newSuper);
     

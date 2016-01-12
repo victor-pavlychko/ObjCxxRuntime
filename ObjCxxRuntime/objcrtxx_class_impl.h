@@ -191,6 +191,8 @@ protocol_list_t class_t::copyProtocolList()
     return protocol_list_t(class_copyProtocolList, cls);
 }
 
+#if OBJCRTXX_EXPOSE_LIST_ACCESSORS
+
 Ivar *class_t::copyIvarList(unsigned int *outCount)
 {
     return class_copyIvarList(cls, outCount);
@@ -210,6 +212,8 @@ detail::Protocol_t *class_t::copyProtocolList(unsigned int *outCount)
 {
     return class_copyProtocolList(cls, outCount);
 }
+
+#endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
 class_t class_t::setSuperclass(class_t newSuper)
 {

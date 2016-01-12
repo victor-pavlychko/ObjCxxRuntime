@@ -26,15 +26,42 @@ char *property_t::copyAttributeValue(const char *attributeName)
     return property_copyAttributeValue(property, attributeName);
 }
 
+char *property_t::copyClassName()
+{
+    char *className = copyAttributeValue("T");
+    if (!className)
+    {
+        return nullptr;
+    }
+    
+    size_t length = strlen(className);
+
+    if (length <= 3 || className[0] != '@' || className[1] != '\"' || className[length - 1] != '\"')
+    {
+        *className = 0;
+    }
+    else
+    {
+        className[length - 1] = 0;
+        memmove(className, className + 2, length - 2);
+    }
+
+    return className;
+}
+
 property_attribute_list_t property_t::copyAttributeList()
 {
     return property_attribute_list_t(property_copyAttributeList, property);
 }
 
+#if OBJCRTXX_EXPOSE_LIST_ACCESSORS
+
 objc_property_attribute_t *property_t::copyAttributeList(unsigned int *outCount)
 {
     return property_copyAttributeList(property, outCount);
 }
+
+#endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
 namespace
 {

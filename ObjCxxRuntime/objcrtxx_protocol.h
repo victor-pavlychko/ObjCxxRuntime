@@ -31,9 +31,13 @@ struct protocol_t
     inline property_list_t copyPropertyList();
     inline protocol_list_t copyProtocolList();
     
+#if OBJCRTXX_EXPOSE_LIST_ACCESSORS
+
     inline struct objc_method_description *copyMethodDescriptionList(bool isRequiredMethod, bool isInstanceMethod, unsigned int *outCount);
     inline objc_property_t *copyPropertyList(unsigned int *outCount);
     inline detail::Protocol_t *copyProtocolList(unsigned int *outCount);
+
+#endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 };
 
 OBJCRTXX_END_NAMESPACE

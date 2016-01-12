@@ -12,6 +12,10 @@
 #define OBJCRTXX_BEGIN_NAMESPACE    namespace address_wtf { namespace objcrtxx {
 #define OBJCRTXX_END_NAMESPACE      } }
 
+#ifndef OBJCRTXX_EXPOSE_LIST_ACCESSORS
+#   define OBJCRTXX_EXPOSE_LIST_ACCESSORS 0
+#endif
+
 #define OBJCXX_PRIMITIVE_WRAPPER(self__, type__, var__, null__) \
     type__ var__ = null__; \
     self__(type__ var__ ## _): var__(var__ ## _) {}  \

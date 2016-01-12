@@ -19,9 +19,14 @@ struct property_t
     inline const char *getAttributes();
     inline char *copyAttributeValue(const char *attributeName);
 
+    inline char *copyClassName();
     inline property_attribute_list_t copyAttributeList();
 
+#if OBJCRTXX_EXPOSE_LIST_ACCESSORS
+    
     inline objc_property_attribute_t *copyAttributeList(unsigned int *outCount);
+
+#endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 };
 
 struct property_info_t

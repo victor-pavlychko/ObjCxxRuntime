@@ -81,6 +81,8 @@ protocol_list_t protocol_t::copyProtocolList()
     return protocol_list_t(protocol_copyProtocolList, protocol);
 }
 
+#if OBJCRTXX_EXPOSE_LIST_ACCESSORS
+
 struct objc_method_description *protocol_t::copyMethodDescriptionList(bool isRequiredMethod, bool isInstanceMethod, unsigned int *outCount)
 {
     return protocol_copyMethodDescriptionList(protocol, isRequiredMethod, isInstanceMethod, outCount);
@@ -95,5 +97,7 @@ detail::Protocol_t *protocol_t::copyProtocolList(unsigned int *outCount)
 {
     return protocol_copyProtocolList(protocol, outCount);
 }
+
+#endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
 OBJCRTXX_END_NAMESPACE
