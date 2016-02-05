@@ -30,6 +30,7 @@
 #define objcrtxx_h__
 
 #include <type_traits>
+#include <functional>
 
 #import <objc/runtime.h>
 #import <objc/message.h>
