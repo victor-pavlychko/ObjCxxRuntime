@@ -191,6 +191,16 @@ protocol_list_t class_t::copyProtocolList()
     return protocol_list_t(class_copyProtocolList, cls);
 }
 
+class_t class_t::setSuperclass(class_t newSuper)
+{
+    return class_setSuperclass(cls, newSuper);
+}
+
+class_t class_t::duplicateClass(const char *name, size_t extraBytes)
+{
+    return objc_duplicateClass(cls, name, extraBytes);
+}
+
 #if OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
 Ivar *class_t::copyIvarList(unsigned int *outCount)
@@ -215,9 +225,23 @@ detail::Protocol_t *class_t::copyProtocolList(unsigned int *outCount)
 
 #endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
-class_t class_t::setSuperclass(class_t newSuper)
+#if !OBJCRTXX_HAS_ARC
+
+id class_t::createInstance(size_t extraBytes)
 {
-    return class_setSuperclass(cls, newSuper);
+    return class_createInstance(cls, extraBytes);
 }
+
+id class_t::constructInstance(void *bytes)
+{
+    return objc_constructInstance(cls, bytes);
+}
+
+void *class_t::destructInstance(id obj)
+{
+    return objc_destructInstance(obj);
+}
+
+#endif // !OBJCRTXX_HAS_ARC
 
 OBJCRTXX_END_NAMESPACE

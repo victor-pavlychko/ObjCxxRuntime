@@ -52,7 +52,12 @@ struct class_t
     inline property_list_t copyPropertyList();
     inline method_list_t copyMethodList();
     inline protocol_list_t copyProtocolList();
+    
+    inline class_t setSuperclass(class_t newSuper)
+        __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_5,__MAC_10_5, __IPHONE_2_0,__IPHONE_2_0);
 
+    inline class_t duplicateClass(const char *name, size_t extraBytes);
+    
 #if OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
     inline Ivar *copyIvarList(unsigned int *outCount);
@@ -62,14 +67,17 @@ struct class_t
 
 #endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
-    inline class_t setSuperclass(class_t newSuper);
-    
-    //        objc_getFutureClass
-    //        objc_setFutureClass
-    //        objc_duplicateClass
-    //        class_createInstance
-    //        objc_constructInstance
-    //        objc_destructInstance
+#if !OBJCRTXX_HAS_ARC
+
+    inline id createInstance(size_t extraBytes);
+    inline id constructInstance(void *bytes);
+    inline static void *destructInstance(id obj);
+
+#endif // !OBJCRTXX_HAS_ARC
+
+//    inline static class_t getFutureClass(const char *name);
+//    inline static void setFutureClass(const char *name);
+
 };
 
 OBJCRTXX_END_NAMESPACE
