@@ -31,6 +31,7 @@
 
 #include <type_traits>
 #include <functional>
+#include <string>
 
 #import <objc/runtime.h>
 #import <objc/message.h>
@@ -38,6 +39,7 @@
 #define OBJCRTXX_UMBRELLA_ACTIVE
 
 #include "objcrtxx_defs.h"
+#include "objcrtxx_traits.h"
 #include "objcrtxx_forwards.h"
 #include "objcrtxx_msgsend.h"
 

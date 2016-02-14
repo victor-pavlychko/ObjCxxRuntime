@@ -45,6 +45,7 @@
 		570D6EA41C4002C3002F19E3 /* objcrtxx_sel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_sel.h; sourceTree = "<group>"; };
 		570D6EA61C4004AC002F19E3 /* objcrtxx_list_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_list_impl.h; sourceTree = "<group>"; };
 		570D6EA71C4005AA002F19E3 /* objcrtxx_defs_cleanup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_defs_cleanup.h; sourceTree = "<group>"; };
+		57588CE41C668B8300C948BC /* objcrtxx_traits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objcrtxx_traits.h; sourceTree = "<group>"; };
 		578D4BF01C4444BB00356D39 /* objcrtxx_msgsend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_msgsend.h; sourceTree = "<group>"; };
 		579693951C3FC4A70082A5F9 /* ObjCxxRuntime */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjCxxRuntime; sourceTree = BUILT_PRODUCTS_DIR; };
 		579693981C3FC4A70082A5F9 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -64,31 +65,65 @@
 		570D6EA51C4002C8002F19E3 /* objcrtxx */ = {
 			isa = PBXGroup;
 			children = (
-				578D4BF11C4469F800356D39 /* interface */,
-				578D4BF21C446A0100356D39 /* impl */,
-				570D6EA71C4005AA002F19E3 /* objcrtxx_defs_cleanup.h */,
-				570D6E941C4002C3002F19E3 /* objcrtxx_defs.h */,
-				570D6E921C4002C3002F19E3 /* objcrtxx_forwards.h */,
-				578D4BF01C4444BB00356D39 /* objcrtxx_msgsend.h */,
+				57588CDF1C668A8D00C948BC /* general */,
+				57588CE21C668B2200C948BC /* support */,
+				578D4BF11C4469F800356D39 /* types */,
+				57588CE11C668B0800C948BC /* utils */,
 				570D6E931C4002C3002F19E3 /* objcrtxx.h */,
 			);
 			name = objcrtxx;
 			sourceTree = "<group>";
 		};
-		578D4BF11C4469F800356D39 /* interface */ = {
+		57588CDF1C668A8D00C948BC /* general */ = {
 			isa = PBXGroup;
 			children = (
+				570D6EA71C4005AA002F19E3 /* objcrtxx_defs_cleanup.h */,
+				570D6E941C4002C3002F19E3 /* objcrtxx_defs.h */,
+				570D6E921C4002C3002F19E3 /* objcrtxx_forwards.h */,
+				578D4BF01C4444BB00356D39 /* objcrtxx_msgsend.h */,
+			);
+			name = general;
+			sourceTree = "<group>";
+		};
+		57588CE11C668B0800C948BC /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		57588CE21C668B2200C948BC /* support */ = {
+			isa = PBXGroup;
+			children = (
+				57588CE31C668B3500C948BC /* impl */,
+				570D6E911C4002C3002F19E3 /* objcrtxx_list.h */,
+				57588CE41C668B8300C948BC /* objcrtxx_traits.h */,
+			);
+			name = support;
+			sourceTree = "<group>";
+		};
+		57588CE31C668B3500C948BC /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				570D6EA61C4004AC002F19E3 /* objcrtxx_list_impl.h */,
+			);
+			name = impl;
+			sourceTree = "<group>";
+		};
+		578D4BF11C4469F800356D39 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				578D4BF21C446A0100356D39 /* impl */,
 				570D6E9F1C4002C3002F19E3 /* objcrtxx_category.h */,
 				570D6EA21C4002C3002F19E3 /* objcrtxx_class.h */,
 				570D6EA31C4002C3002F19E3 /* objcrtxx_imp.h */,
 				570D6E9D1C4002C3002F19E3 /* objcrtxx_ivar.h */,
-				570D6E911C4002C3002F19E3 /* objcrtxx_list.h */,
 				570D6EA11C4002C3002F19E3 /* objcrtxx_method.h */,
 				570D6E9E1C4002C3002F19E3 /* objcrtxx_property.h */,
 				570D6EA01C4002C3002F19E3 /* objcrtxx_protocol.h */,
 				570D6EA41C4002C3002F19E3 /* objcrtxx_sel.h */,
 			);
-			name = interface;
+			name = types;
 			sourceTree = "<group>";
 		};
 		578D4BF21C446A0100356D39 /* impl */ = {
@@ -98,7 +133,6 @@
 				570D6E971C4002C3002F19E3 /* objcrtxx_class_impl.h */,
 				570D6E981C4002C3002F19E3 /* objcrtxx_imp_impl.h */,
 				570D6E991C4002C3002F19E3 /* objcrtxx_ivar_impl.h */,
-				570D6EA61C4004AC002F19E3 /* objcrtxx_list_impl.h */,
 				570D6E9A1C4002C3002F19E3 /* objcrtxx_method_impl.h */,
 				570D6E9B1C4002C3002F19E3 /* objcrtxx_property_impl.h */,
 				570D6E9C1C4002C3002F19E3 /* objcrtxx_protocol_impl.h */,

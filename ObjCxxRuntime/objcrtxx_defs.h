@@ -22,36 +22,57 @@
     self__(const self__ &other): var__(other.var__) {} \
     self__(const self__ &&other): var__(other.var__) {} \
     self__ &operator=(const self__ &other) { var__ = other.var__; return *this; } \
+    self__ &operator=(const self__ &&other) { var__ = other.var__; return *this; } \
     self__ &operator=(const type__ &other) { var__ = other; return *this; } \
-    operator type__() { return var__; } \
+    self__ &operator=(const type__ &&other) { var__ = other; return *this; } \
+    operator type__() const { return var__; } \
+    operator type__&() { return var__; } \
     operator const type__&() const { return var__; } \
     operator bool() { return !!var__; } \
     type__ *operator&() { return &var__; } \
     const type__ *operator&() const { return &var__; } \
 
-#if defined(__arm__)
+#if __has_feature(objc_arc)
 
-#   define OBJCRTXX_HAS_ABI        1
-#   define OBJCRTXX_HAS_ABI_FPRET  0
-#   define OBJCRTXX_HAS_ABI_FP2RET 0
-
-#elif defined(__i386__)
-
-#   define OBJCRTXX_HAS_ABI        1
-#   define OBJCRTXX_HAS_ABI_FPRET  1
-#   define OBJCRTXX_HAS_ABI_FP2RET 0
-
-#elif defined(__x86_64__)
-
-#   define OBJCRTXX_HAS_ABI        1
-#   define OBJCRTXX_HAS_ABI_FPRET  1
-#   define OBJCRTXX_HAS_ABI_FP2RET 1
+#   define OBJCRTXX_HAS_ARC         1
+#   define OBJCRTXX_RETAIN(x)       ([(x) retain])
+#   define OBJCRTXX_RELEASE(x)      ([(x) release])
+#   define OBJCRTXX_AUTORELEASE(x)  ([(x) autorelease])
 
 #else
 
-#   define OBJCRTXX_HAS_ABI        0
-#   define OBJCRTXX_HAS_ABI_FPRET  0
-#   define OBJCRTXX_HAS_ABI_FP2RET 0
+#   define OBJCRTXX_HAS_ARC         0
+#   define OBJCRTXX_RETAIN(x)       (x)
+#   define OBJCRTXX_RELEASE(x)      (x)
+#   define OBJCRTXX_AUTORELEASE(x)  (x)
+
+#endif
+
+#define OBJRTXX_CFRELEASE(x__)      do { if (x) { CFRelease(x); } x = NULL; } while (0)
+
+#if defined(__arm__)
+
+#   define OBJCRTXX_HAS_ABI         1
+#   define OBJCRTXX_HAS_ABI_FPRET   0
+#   define OBJCRTXX_HAS_ABI_FP2RET  0
+
+#elif defined(__i386__)
+
+#   define OBJCRTXX_HAS_ABI         1
+#   define OBJCRTXX_HAS_ABI_FPRET   1
+#   define OBJCRTXX_HAS_ABI_FP2RET  0
+
+#elif defined(__x86_64__)
+
+#   define OBJCRTXX_HAS_ABI         1
+#   define OBJCRTXX_HAS_ABI_FPRET   1
+#   define OBJCRTXX_HAS_ABI_FP2RET  1
+
+#else
+
+#   define OBJCRTXX_HAS_ABI         0
+#   define OBJCRTXX_HAS_ABI_FPRET   0
+#   define OBJCRTXX_HAS_ABI_FP2RET  0
 
 #endif
 

@@ -18,10 +18,10 @@ struct method_t
 #if OBJCRTXX_HAS_ABI
 
     template<typename TRet, typename ...TArgs>
-    typename std::enable_if<!detail::is_objc_stret<TRet>::value, TRet>::type invoke(id self_, TArgs... args);
+    typename std::enable_if<!traits::is_objc_stret<TRet>::value, TRet>::type invoke(id self_, TArgs... args);
     
     template<typename TRet, typename ...TArgs>
-    typename std::enable_if<detail::is_objc_stret<TRet>::value, TRet>::type invoke(id self_, TArgs... args);
+    typename std::enable_if<traits::is_objc_stret<TRet>::value, TRet>::type invoke(id self_, TArgs... args);
 
 #endif // OBJCRTXX_HAS_ABI
     

@@ -14,13 +14,13 @@ OBJCRTXX_BEGIN_NAMESPACE
 #if OBJCRTXX_HAS_ABI
 
 template<typename TRet, typename ...TArgs>
-typename std::enable_if<!detail::is_objc_stret<TRet>::value, TRet>::type method_t::invoke(id self_, TArgs... args)
+typename std::enable_if<!traits::is_objc_stret<TRet>::value, TRet>::type method_t::invoke(id self_, TArgs... args)
 {
     return (reinterpret_cast<TRet(*)(id, Method, TArgs...)>(method_invoke))(self_, method, args...);
 }
 
 template<typename TRet, typename ...TArgs>
-typename std::enable_if<detail::is_objc_stret<TRet>::value, TRet>::type method_t::invoke(id self_, TArgs... args)
+typename std::enable_if<traits::is_objc_stret<TRet>::value, TRet>::type method_t::invoke(id self_, TArgs... args)
 {
     return (reinterpret_cast<TRet(*)(id, Method, TArgs...)>(method_invoke_stret))(self_, method, args...);
 }
