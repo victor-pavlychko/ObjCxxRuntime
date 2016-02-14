@@ -32,6 +32,7 @@
 #include <type_traits>
 #include <functional>
 #include <string>
+#include <sstream>
 
 #import <objc/runtime.h>
 #import <objc/message.h>
@@ -64,6 +65,8 @@
 #include "objcrtxx_property_impl.h"
 #include "objcrtxx_protocol_impl.h"
 #include "objcrtxx_sel_impl.h"
+
+#include "objcrtxx_typeencoding.h"
 
 #include "objcrtxx_defs_cleanup.h"
 

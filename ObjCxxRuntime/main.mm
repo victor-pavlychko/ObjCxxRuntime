@@ -28,9 +28,23 @@ void foo()
     objcrtxx::msgSend<float>(nil, @selector(init), 2, 3);
 }
 
+static void fn(id, SEL, CGRect)
+{
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
+        
+        std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGRect>() << std::endl;
+
+        std::cout << objcrtxx::encodeMethodType<void, CGRect>() << std::endl;
+
+        std::cout << objcrtxx::encodeMethodType(^(id s, CGRect x) { }) << std::endl;
+
+        std::cout << objcrtxx::encodeMethodType([](id s, CGRect x) { }) << std::endl;
+        
+        std::cout << objcrtxx::encodeMethodType(fn) << std::endl;
         
         foo();
         
