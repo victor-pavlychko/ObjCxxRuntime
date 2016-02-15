@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "ObjCxxRuntime.h"
-#import "objcrtxx.h"
 
 #include <iostream>
+
+#import "objcrtxx.h"
 
 using namespace address_wtf;
 
@@ -35,8 +35,10 @@ static void fn(id, SEL, CGRect)
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        
+
         std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGRect>() << std::endl;
+        std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGPoint>() << std::endl;
+        std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGAffineTransform>() << std::endl;
 
         std::cout << objcrtxx::encodeMethodType<void, CGRect>() << std::endl;
 

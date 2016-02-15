@@ -15,58 +15,67 @@ OBJCRTXX_BEGIN_NAMESPACE
 namespace detail
 {
     template<typename ...TTail>
-    struct type_encodings
+    struct type_encoding_builder
     {
-        static inline void appendEncodings(std::stringstream &stream)
+        enum { size = 1 };
+
+        static inline void build(char *p)
         {
+            *p = 0;
         }
     };
     
     template<typename THead, typename ...TTail>
-    struct type_encodings<THead, TTail...>
+    struct type_encoding_builder<THead, TTail...>
     {
-        static inline void appendEncodings(std::stringstream &stream)
+        enum { size = type_encoding_builder<TTail...>::size + sizeof(@encode(THead)) - 1 };
+
+        static inline void build(char *p)
         {
-            stream << @encode(THead);
-            type_encodings<TTail...>::appendEncodings(stream);
+            strcpy(p, @encode(THead));
+            type_encoding_builder<TTail...>::build(p + sizeof(@encode(THead)) - 1);
         }
     };
 }
 
 template<typename ...TTypes>
-std::string encodeTypeList()
+const char *encodeTypeList()
 {
-    std::stringstream stream;
-    detail::type_encodings<TTypes...>::appendEncodings(stream);
-    return stream.str();
+    static char value[detail::type_encoding_builder<TTypes...>::size];
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
+        detail::type_encoding_builder<TTypes...>::build(value);
+    });
+
+    return value;
 }
 
 template<typename TReturn, typename ...TArgs>
-std::string encodeMethodType()
-{
-    return encodeTypeList<TReturn, id, SEL, TArgs...>();
-}
-
-template<typename TReturn, typename ...TArgs>
-std::string encodeMethodType(TReturn(id, SEL, TArgs...))
+const char *encodeMethodType()
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TReturn, typename ...TArgs>
-std::string encodeMethodType(TReturn(^)(id, TArgs...))
+const char *encodeMethodType(TReturn(id, SEL, TArgs...))
+{
+    return encodeTypeList<TReturn, id, SEL, TArgs...>();
+}
+
+template<typename TReturn, typename ...TArgs>
+const char *encodeMethodType(TReturn(^)(id, TArgs...))
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TReturn, typename TClass, typename ...TArgs>
-std::string encodeMethodType(TReturn (TClass::* const)(id, TArgs...) const)
+const char *encodeMethodType(TReturn (TClass::* const)(id, TArgs...) const)
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TLambda>
-std::string encodeMethodType(TLambda lambda)
+const char *encodeMethodType(TLambda lambda)
 {
     return encodeMethodType(&TLambda::operator());
 }
