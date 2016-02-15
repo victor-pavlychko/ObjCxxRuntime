@@ -39,14 +39,16 @@ int main(int argc, const char * argv[]) {
         std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGRect>() << std::endl;
         std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGPoint>() << std::endl;
         std::cout << objcrtxx::encodeTypeList<void, id, SEL, CGAffineTransform>() << std::endl;
-
         std::cout << objcrtxx::encodeMethodType<void, CGRect>() << std::endl;
-
         std::cout << objcrtxx::encodeMethodType(^(id s, CGRect x) { }) << std::endl;
-
         std::cout << objcrtxx::encodeMethodType([](id s, CGRect x) { }) << std::endl;
-        
         std::cout << objcrtxx::encodeMethodType(fn) << std::endl;
+
+        objcrtxx::swizzle([NSObject class], @selector(description), ^NSString *(objcrtxx::swizzle_trampoline_t<NSString *> trampoline, id self_) {
+            return [NSString stringWithFormat:@">>> %@ <<<", trampoline(self_)];
+        });
+        
+        NSLog(@"%@", [[[NSObject alloc] init] description]);
         
         foo();
         

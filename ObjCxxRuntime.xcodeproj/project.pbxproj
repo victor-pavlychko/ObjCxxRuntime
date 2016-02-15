@@ -47,6 +47,7 @@
 		570D6EA71C4005AA002F19E3 /* objcrtxx_defs_cleanup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_defs_cleanup.h; sourceTree = "<group>"; };
 		57443C9A1C70D2150013E51A /* objcrtxx_typeencoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objcrtxx_typeencoding.h; sourceTree = "<group>"; };
 		57588CE41C668B8300C948BC /* objcrtxx_traits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objcrtxx_traits.h; sourceTree = "<group>"; };
+		577F8C971C723132008C094B /* objcrtxx_swizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objcrtxx_swizzle.h; sourceTree = "<group>"; };
 		578D4BF01C4444BB00356D39 /* objcrtxx_msgsend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcrtxx_msgsend.h; sourceTree = "<group>"; };
 		579693951C3FC4A70082A5F9 /* ObjCxxRuntime */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjCxxRuntime; sourceTree = BUILT_PRODUCTS_DIR; };
 		579693981C3FC4A70082A5F9 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				57443C9A1C70D2150013E51A /* objcrtxx_typeencoding.h */,
+				577F8C971C723132008C094B /* objcrtxx_swizzle.h */,
 			);
 			name = utils;
 			sourceTree = "<group>";

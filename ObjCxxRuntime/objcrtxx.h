@@ -65,6 +65,7 @@
 #include "objcrtxx_sel_impl.h"
 
 #include "objcrtxx_typeencoding.h"
+#include "objcrtxx_swizzle.h"
 
 #include "objcrtxx_defs_cleanup.h"
 
