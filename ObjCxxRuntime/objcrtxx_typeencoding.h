@@ -51,31 +51,31 @@ const char *encodeTypeList()
 }
 
 template<typename TReturn, typename ...TArgs>
-const char *encodeMethodType()
+inline const char *encodeMethodType()
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TReturn, typename ...TArgs>
-const char *encodeMethodType(TReturn(id, SEL, TArgs...))
+inline const char *encodeMethodType(TReturn(id, SEL, TArgs...))
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TReturn, typename ...TArgs>
-const char *encodeMethodType(TReturn(^)(id, TArgs...))
+inline const char *encodeMethodType(TReturn(^)(id, TArgs...))
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TReturn, typename TClass, typename ...TArgs>
-const char *encodeMethodType(TReturn (TClass::* const)(id, TArgs...) const)
+inline const char *encodeMethodType(TReturn (TClass::* const)(id, TArgs...) const)
 {
     return encodeTypeList<TReturn, id, SEL, TArgs...>();
 }
 
 template<typename TLambda>
-const char *encodeMethodType(TLambda lambda)
+inline const char *encodeMethodType(TLambda lambda)
 {
     return encodeMethodType(&TLambda::operator());
 }
