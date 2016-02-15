@@ -26,4 +26,10 @@ bool imp_t::removeBlock()
     return imp_removeBlock(imp);
 }
 
+template<typename TRet, typename ...TArgs>
+TRet imp_t::invoke(id self_, SEL cmd_, TArgs... args) const
+{
+    return (reinterpret_cast<TRet(*)(id, SEL, TArgs...)>(imp))(self_, cmd_, args...);
+}
+
 OBJCRTXX_END_NAMESPACE

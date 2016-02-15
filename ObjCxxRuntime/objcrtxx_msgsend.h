@@ -53,7 +53,7 @@ static inline typename std::enable_if<!traits::is_objc_stret<TRet>::value, TRet>
         .super_class = super_class,
     };
     
-    return (reinterpret_cast<TRet(*)(struct objc_super *, SEL, TArgs...)>(objc_msgSendSuper))(super_, cmd_, args...);
+    return (reinterpret_cast<TRet(*)(struct objc_super *, SEL, TArgs...)>(objc_msgSendSuper))(&super_, cmd_, args...);
 }
 
 template<typename TRet, typename ...TArgs>
@@ -64,7 +64,7 @@ static inline typename std::enable_if<traits::is_objc_stret<TRet>::value, TRet>:
         .super_class = super_class,
     };
     
-    return (reinterpret_cast<TRet(*)(struct objc_super *, SEL, TArgs...)>(objc_msgSendSuper_stret))(super_, cmd_, args...);
+    return (reinterpret_cast<TRet(*)(struct objc_super *, SEL, TArgs...)>(objc_msgSendSuper_stret))(&super_, cmd_, args...);
 }
 
 OBJCRTXX_END_NAMESPACE

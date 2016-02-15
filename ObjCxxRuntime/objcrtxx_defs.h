@@ -18,6 +18,7 @@
 
 #define OBJCXX_PRIMITIVE_WRAPPER(self__, type__, var__, null__) \
     type__ var__ = null__; \
+    self__() {} \
     self__(type__ var__ ## _): var__(var__ ## _) {}  \
     self__(const self__ &other): var__(other.var__) {} \
     self__(const self__ &&other): var__(other.var__) {} \
@@ -26,11 +27,12 @@
     self__ &operator=(const type__ &other) { var__ = other; return *this; } \
     self__ &operator=(const type__ &&other) { var__ = other; return *this; } \
     operator type__() const { return var__; } \
-    operator type__&() { return var__; } \
-    operator const type__&() const { return var__; } \
     operator bool() { return !!var__; } \
     type__ *operator&() { return &var__; } \
     const type__ *operator&() const { return &var__; } \
+
+//operator type__&() { return var__; } \
+//operator const type__&() const { return var__; } \
 
 #if __has_feature(objc_arc)
 
