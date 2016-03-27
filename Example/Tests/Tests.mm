@@ -6,7 +6,8 @@
 //  Copyright (c) 2016 Victor Pavlychko. All rights reserved.
 //
 
-@import XCTest;
+#import <XCTest/XCTest.h>
+#import <objcrtxx/objcrtxx.h>
 
 @interface Tests : XCTestCase
 

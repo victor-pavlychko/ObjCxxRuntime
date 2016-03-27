@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  objcrtxx: a78f28e7231c6e00fb768ac9a6ec51518133c63f
+  objcrtxx: 3d96da593b382c7a48ecaf31eaa9b90d7029bec2
 
 COCOAPODS: 0.39.0
