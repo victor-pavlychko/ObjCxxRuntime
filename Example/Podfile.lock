@@ -1,0 +1,14 @@
+PODS:
+  - objcrtxx (0.1.0)
+
+DEPENDENCIES:
+  - objcrtxx (from `../`)
+
+EXTERNAL SOURCES:
+  objcrtxx:
+    :path: ../
+
+SPEC CHECKSUMS:
+  objcrtxx: a78f28e7231c6e00fb768ac9a6ec51518133c63f
+
+COCOAPODS: 0.39.0
