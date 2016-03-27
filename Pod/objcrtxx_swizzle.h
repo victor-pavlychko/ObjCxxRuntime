@@ -1,14 +1,11 @@
 //
 //  objcrtxx_swizzle.h
-//  ObjCxxRuntime
 //
 //  Created by Victor Pavlychko on 2/15/16.
 //  Copyright © 2016 address.wtf. All rights reserved.
 //
 
-#ifndef OBJCRTXX_UMBRELLA_ACTIVE
-#error Please include objcrtxx.h umbrella header
-#endif // OBJCRTXX_UMBRELLA_ACTIVE
+#ifdef OBJCRTXX_UMBRELLA_ACTIVE
 
 OBJCRTXX_BEGIN_NAMESPACE
 
@@ -44,3 +41,5 @@ static void swizzle(class_t cls, sel_t selector, TResult(^block)(TResult(^trampo
 }
 
 OBJCRTXX_END_NAMESPACE
+
+#endif // OBJCRTXX_UMBRELLA_ACTIVE

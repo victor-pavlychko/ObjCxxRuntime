@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   #   'objcrtxx' => ['Pod/Assets/*.png']
   # }
 
-  s.public_header_files = 'Pod/**/*.h'
+  s.public_header_files = ['Pod/objcrtxx.h', 'Pod/**/*.h']
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -2,12 +2,10 @@
 //  objcrtxx_protocol_impl.h
 //
 //  Created by Victor Pavlychko on 08.01.2016.
-//  Copyright © 2015 Address WTF. All rights reserved.
+//  Copyright © 2016 address.wtf. All rights reserved.
 //
 
-#ifndef OBJCRTXX_UMBRELLA_ACTIVE
-#error Please include objcrtxx.h umbrella header
-#endif // OBJCRTXX_UMBRELLA_ACTIVE
+#ifdef OBJCRTXX_UMBRELLA_ACTIVE
 
 OBJCRTXX_BEGIN_NAMESPACE
 
@@ -101,3 +99,5 @@ detail::Protocol_t *protocol_t::copyProtocolList(unsigned int *outCount)
 #endif // OBJCRTXX_EXPOSE_LIST_ACCESSORS
 
 OBJCRTXX_END_NAMESPACE
+
+#endif // OBJCRTXX_UMBRELLA_ACTIVE

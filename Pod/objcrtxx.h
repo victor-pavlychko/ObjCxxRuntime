@@ -2,7 +2,7 @@
 //  objcrtxx.h
 //
 //  Created by Victor Pavlychko on 08.01.2016.
-//  Copyright © 2015 Address WTF. All rights reserved.
+//  Copyright © 2016 address.wtf. All rights reserved.
 //
 //  The MIT License (MIT)
 //  Copyright (c) 2016 Victor Pavlychko
@@ -29,11 +29,13 @@
 #ifndef objcrtxx_h__
 #define objcrtxx_h__
 
-#include <type_traits>
-#include <functional>
+#if defined(__cplusplus) && defined(__OBJC__)
 
 #import <objc/runtime.h>
 #import <objc/message.h>
+
+#include <type_traits>
+#include <functional>
 
 #define OBJCRTXX_UMBRELLA_ACTIVE
 
@@ -70,5 +72,7 @@
 #include "objcrtxx_defs_cleanup.h"
 
 #undef OBJCRTXX_UMBRELLA_ACTIVE
+
+#endif // defined(__cplusplus) && defined(__OBJC__)
 
 #endif // objcrtxx_h__

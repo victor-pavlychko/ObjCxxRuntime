@@ -2,12 +2,10 @@
 //  objcrtxx_list.h
 //
 //  Created by Victor Pavlychko on 08.01.2016.
-//  Copyright © 2015 Address WTF. All rights reserved.
+//  Copyright © 2016 address.wtf. All rights reserved.
 //
 
-#ifndef OBJCRTXX_UMBRELLA_ACTIVE
-#error Please include objcrtxx.h umbrella header
-#endif // OBJCRTXX_UMBRELLA_ACTIVE
+#ifdef OBJCRTXX_UMBRELLA_ACTIVE
 
 OBJCRTXX_BEGIN_NAMESPACE
 
@@ -44,3 +42,5 @@ typedef runtime_list_t<Method>                      method_list_t;
 typedef runtime_list_t<objc_method_description>     method_description_list_t;
 
 OBJCRTXX_END_NAMESPACE
+
+#endif // OBJCRTXX_UMBRELLA_ACTIVE

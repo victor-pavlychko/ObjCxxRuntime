@@ -17,5 +17,8 @@
   },
   "requires_arc": true,
   "source_files": "Pod/**/*",
-  "public_header_files": "Pod/**/*.h"
+  "public_header_files": [
+    "Pod/objcrtxx.h",
+    "Pod/**/*.h"
+  ]
 }
